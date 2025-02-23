@@ -1,0 +1,20 @@
+{
+  "name": "js-seq2seq",
+  "private": true,
+  "version": "1.0.0",
+  "description": "An example how to run encoder/decoder in onnxruntime-web.",
+  "scripts": {
+    "build": "webpack --config ./webpack.config.js --mode production",
+    "dev": "webpack --config ./webpack.config.js --mode development"
+  },
+  "devDependencies": {
+    "eslint": "^8.40.0"
+  },
+  "dependencies": {
+    "copy-webpack-plugin": "^11.0.0",
+    "onnxruntime-web": "^1.15.1",
+    "webpack": "^5.82.1",
+    "webpack-cli": "^5.1.1"
+  }
+}
+
