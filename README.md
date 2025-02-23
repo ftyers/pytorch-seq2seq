@@ -3,7 +3,7 @@
 Requirements:
 
 ```
-torch==2.4.0 onnx onnxruntime onnxscript olive 
+torch==2.4.0 onnx onnxruntime onnxscript olive-ai
 ```
 
 # Training
