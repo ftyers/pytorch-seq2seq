@@ -55,9 +55,9 @@ with open(sys.argv[1], 'rb') as f:
 							input_tensor,
 							dynamo=True
 						)
-		onnx_program.save("encoder.model.onnx")
+		onnx_program.save("encoder_model.onnx")
 
 		# The dummy_input should be a tuple that has the same number of elements as are required by 
 		# trained_model.forward(). https://github.com/pytorch/pytorch/issues/20009
 		onnx_decoder = torch.onnx.export(decoder, (encoder_outputs,encoder_hidden),dynamo=True)#**kwargs)
-		onnx_decoder.save("decoder.model.onnx")
+		onnx_decoder.save("decoder_model.onnx")
