@@ -428,14 +428,25 @@ def evaluate(encoder, decoder, sentence, input_lang, output_lang, device):
 #
 
 def evaluateRandomly(encoder, decoder, device, n=10):
+#> u n s h u n n a b l e
+#= ʌ n ʃ ʌ n ə b ə l
+#< ʌ n ʃ ʌ n ə b ə l <EOS>
+#
+    good = 0
     for i in range(n):
         pair = random.choice(pairs)
-        print('>', pair[0])
-        print('=', pair[1])
+        print('?', pair[0])
         output_words, _ = evaluate(encoder, decoder, pair[0], input_lang, output_lang, device)
         output_sentence = ' '.join(output_words)
-        print('<', output_sentence)
+        if output_sentence == pair[1] + ' <EOS>':
+            print('=', pair[1])
+            good += 1
+        else:
+            print('<', output_sentence)
+            print('>', pair[1])
         print('')
+
+    print(good/n)
 
 
 ######################################################################
@@ -548,11 +559,14 @@ if __name__ == "__main__":
 	batch_size = 512
 	
 	input_lang, output_lang, train_dataloader = get_dataloader(batch_size)
+
+	print(input_lang.index2word)
+	print(output_lang.index2word)
 	
 	encoder = EncoderRNN(input_lang.n_words, hidden_size).to(device)
 	decoder = AttnDecoderRNN(hidden_size, output_lang.n_words, device=device).to(device)
 	
-	train(train_dataloader, encoder, decoder, 80, print_every=2, plot_every=5)
+	train(train_dataloader, encoder, decoder, 100, print_every=2, plot_every=5)
 	
 	checkpoint = {
 	    'encoder':encoder.state_dict(),
@@ -567,6 +581,6 @@ if __name__ == "__main__":
 	
 	encoder.eval()
 	decoder.eval()
-	evaluateRandomly(encoder, decoder)
+	evaluateRandomly(encoder, decoder, device)
 	
 

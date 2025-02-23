@@ -44,7 +44,7 @@ with open(sys.argv[1], 'rb') as f:
 	encoder.eval()
 	decoder.eval()
 
-	word = ' '.join([c for c in "antidote"])
+	word = ' '.join([c for c in "maturity"])
 	chars, attn, encoder_outputs, encoder_hidden = evaluate(encoder, decoder, word, input_lang, output_lang, device)
 
 	with torch.no_grad():
@@ -53,8 +53,7 @@ with open(sys.argv[1], 'rb') as f:
 
 		onnx_program = torch.onnx.export(encoder, 
 							input_tensor,
-							dynamo=True,
-							opset_version=18
+							dynamo=True
 						)
 		onnx_program.save("encoder.model.onnx")
 
