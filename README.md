@@ -6,6 +6,14 @@ Requirements:
 torch==2.4.0 onnx onnxruntime onnxscript olive-ai
 ```
 
+On ehecatl:
+`pip install torch==2.4 --index-url https://download.pytorch.org/whl/cu118`
+
+```
+python3 -m venv .
+source ./bin/activate
+```
+
 # Training
 
 ```
@@ -17,12 +25,12 @@ $ python3 seq2seq.py
 Export model to ONNX:
 
 ```
-$ python3 export.py model.pth
+$ python3 export.py model.checkpoint
 ```
 
 Inference using Pytorch:
 ```
-$ python3 predict.py model.pth
+$ python3 predict.py model.checkpoint
 ```
 
 Inference using ONNX:

@@ -575,7 +575,7 @@ if __name__ == "__main__":
 	    'input_lang':input_lang, 
 	    'output_lang': output_lang
 	}
-	model_name = 'model.pth'
+	model_name = 'model.checkpoint'
 	with open(model_name,'wb') as f:
 	    torch.save(checkpoint, f)
 	
